@@ -1,0 +1,80 @@
+﻿<Window x:Class="Calculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calculator"
+        mc:Ignorable="d"
+        Title="Calculator" Height="472" Width="366" ResizeMode="CanMinimize">
+    <Window.Resources>
+        <Style x:Key="OStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Width" Value="85"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <EventSetter Event="Click" Handler="RefreashStat"/>
+        </Style>
+        <Style x:Key="CStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource OStyle}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <EventSetter Event="Click" Handler="GetNumber"/>
+        </Style>
+        <Style x:Key="ResultWindowStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+        </Style>
+        <Style x:Key="OperationWindowStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource ResultWindowStyle}">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Foreground" Value="Gray"/>
+            <Setter Property="Height" Value="NaN"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+        </Style>
+    </Window.Resources>
+    <Grid Name="MainGrid">
+        <StackPanel Margin="5">
+            <Button HorizontalAlignment="Right" FontSize="12" Width="80" Click="History_Click">History</Button>
+            <Border Height="50">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <TextBox Name="OperationWindow" Style="{StaticResource ResourceKey=OperationWindowStyle}"/>
+                </ScrollViewer>
+            </Border>
+            <TextBox Name="ResultWindow" Style="{StaticResource ResourceKey=ResultWindowStyle}"/>
+            <Border BorderThickness="0.5" BorderBrush="Black" Margin="0,1"/>
+            <WrapPanel>
+                <Button Style="{StaticResource ResourceKey=OStyle}" Click="Sqrt_Click">√</Button>
+                <Button Style="{StaticResource ResourceKey=OStyle}" Click="Pow_Click">x²</Button>
+                <Button Style="{StaticResource ResourceKey=OStyle}" FontStyle="Italic" Click="Fibonacci_Click">Fn</Button>
+                <Button Name="myMedian" Style="{StaticResource ResourceKey=OStyle}" FontStyle="Italic" Click="Median_Click">Me</Button>
+                <Button Name="myPercent" Style="{StaticResource ResourceKey=OStyle}" Click="Percent_Click">%</Button>
+                <Button Style="{StaticResource ResourceKey=OStyle}" Click="Clear_Click">C</Button>
+                <Button Style="{StaticResource ResourceKey=OStyle}" Click="Back_Click">←</Button>
+                <Button Name="myDivision" Style="{StaticResource ResourceKey=OStyle}" Click="Division_Click">÷</Button>
+                <Button Style="{StaticResource ResourceKey=CStyle}" Tag="7">7</Button>
+                <Button Style="{StaticResource ResourceKey=CStyle}" Tag="8">8</Button>
+                <Button Style="{StaticResource ResourceKey=CStyle}" Tag="9">9</Button>
+                <Button Name="myMultiplication" Style="{StaticResource ResourceKey=OStyle}" Click="Multiplication_Click">×</Button>
+                <Button Style="{StaticResource ResourceKey=CStyle}" Tag="4">4</Button>
+                <Button Style="{StaticResource ResourceKey=CStyle}" Tag="5">5</Button>
+                <Button Style="{StaticResource ResourceKey=CStyle}" Tag="6">6</Button>
+                <Button Name="mySubtraction"  Style="{StaticResource ResourceKey=OStyle}" Click="Subtraction_Click">-</Button>
+                <Button Style="{StaticResource ResourceKey=CStyle}" Tag="1">1</Button>
+                <Button Style="{StaticResource ResourceKey=CStyle}" Tag="2">2</Button>
+                <Button Style="{StaticResource ResourceKey=CStyle}" Tag="3">3</Button>
+                <Button Name="myAddition" Style="{StaticResource ResourceKey=OStyle}" Click="Addition_Click">+</Button>
+                <Button Style="{StaticResource ResourceKey=CStyle}" Tag="-">±</Button>
+                <Button Style="{StaticResource ResourceKey=CStyle}" Tag="0">0</Button>
+                <Button Style="{StaticResource ResourceKey=CStyle}" Tag=",">,</Button>
+                <Button Style="{StaticResource ResourceKey=OStyle}" Click="GetResult_Click">=</Button>
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</Window>
